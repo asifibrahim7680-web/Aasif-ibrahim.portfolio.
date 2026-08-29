@@ -16,17 +16,19 @@ export interface Project {
   role: string;
 }
 
+export interface Skill {
+  name: string;
+  level: string;
+  icon: string;
+  tagColor: string;
+  description: string;
+}
+
 export interface SkillCategory {
   title: string;
   icon: string;
   borderColor: string;
-  skills: {
-    name: string;
-    level: string;
-    icon: string;
-    tagColor: string;
-    description: string;
-  }[];
+  skills: Skill[];
 }
 
 export interface Certification {

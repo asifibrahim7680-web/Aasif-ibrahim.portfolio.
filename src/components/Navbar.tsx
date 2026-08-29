@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Menu, X, ArrowRight, Sun, Moon, Sparkles, FileText, Camera } from 'lucide-react';
+import { Terminal, Menu, X, ArrowRight, Sun, Moon, Sparkles, FileText, Code2 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { usePhoto } from '../context/PhotoContext';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -18,7 +17,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenResume
 }) => {
-  const { photoUrl, openUploadModal } = usePhoto();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
@@ -34,6 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Home', id: 'hero' },
     { name: 'About', id: 'about' },
     { name: 'Skills', id: 'skills' },
+    { name: 'Lab', id: 'interactive-lab' },
     { name: 'Projects', id: 'projects' },
     { name: 'Education', id: 'education' },
     { name: 'Certifications', id: 'certifications' },
@@ -56,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             : 'bg-white/80 dark:bg-[#0b1326]/70 backdrop-blur-md border-b border-slate-100 dark:border-[#424754]/20'
         } flex justify-between items-center h-18 px-4 sm:px-6 md:px-12`}
       >
-        {/* Left Brand - Inspired by Ajay. in reference */}
+        {/* Left Brand */}
         <div className="flex items-center gap-3">
           <button
             id="menu-toggle-btn"
@@ -72,20 +71,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={(e) => handleLinkClick(e, 'hero')}
             className="flex items-center gap-2.5 text-slate-900 dark:text-[#dae2fd] font-extrabold text-2xl tracking-tight group"
           >
-            <div 
-              onClick={(e) => {
-                e.stopPropagation();
-                openUploadModal();
-              }}
-              title="Click to change or upload real photo"
-              className="w-8 h-8 rounded-full overflow-hidden border-2 border-indigo-500/50 shadow-sm flex-shrink-0 cursor-pointer hover:border-indigo-400 transition-colors"
-            >
-              <img
-                src={photoUrl}
-                alt={PERSONAL_INFO.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
+            <div className="w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-600 text-white flex items-center justify-center font-['Outfit'] font-bold text-sm shadow-sm">
+              <span>AI</span>
             </div>
             <div className="flex items-center">
               <span className="font-['Outfit']">{PERSONAL_INFO.name.split(' ')[0]}</span>
@@ -173,20 +160,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="flex items-center justify-between pb-6 border-b border-[#424754]/30 mb-6 px-2">
           <div className="flex items-center gap-3">
-            <div 
-              onClick={() => {
-                setMobileDrawerOpen(false);
-                openUploadModal();
-              }}
-              className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#adc6ff]/60 shadow-sm flex-shrink-0 cursor-pointer"
-              title="Change photo"
-            >
-              <img
-                src={photoUrl}
-                alt={PERSONAL_INFO.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
+            <div className="w-9 h-9 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-['Outfit'] font-bold text-sm shadow-sm flex-shrink-0">
+              AI
             </div>
             <div>
               <h2 className="font-['Outfit'] font-bold text-base text-[#adc6ff]">{PERSONAL_INFO.name}</h2>

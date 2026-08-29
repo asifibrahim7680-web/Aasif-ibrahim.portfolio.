@@ -27,7 +27,6 @@ import {
   CORE_STRENGTHS, 
   LANGUAGES_DATA 
 } from '../data/portfolioData';
-import { usePhoto } from '../context/PhotoContext';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -35,7 +34,6 @@ interface ResumeModalProps {
 }
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
-  const { photoUrl, openUploadModal } = usePhoto();
   const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
@@ -171,50 +169,34 @@ To grow as a technology professional while contributing to student and developer
             
             {/* Resume Header */}
             <div className="pb-4 border-b-2 border-slate-900">
-              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
-                <div className="flex-1 text-center sm:text-left">
-                  <h1 className="font-['Outfit'] font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-wide uppercase">
-                    Aasif Ibrahim
-                  </h1>
-                  <p className="font-['Outfit'] text-sm sm:text-base font-semibold text-slate-700 mt-1">
-                    B.E. Computer Science & Engineering <span className="text-slate-400">|</span> AI & Technology Enthusiast <span className="text-slate-400">|</span> Community Builder
-                  </p>
-                  
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 mt-2 text-xs text-slate-600 font-['JetBrains_Mono']">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-indigo-600" />
-                      Avadi, Chennai, Tamil Nadu, India
-                    </span>
-                    <span className="text-slate-300">•</span>
-                    <span className="flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-indigo-600" />
-                      +91 80725 96741
-                    </span>
-                    <span className="text-slate-300">•</span>
-                    <a href="mailto:asifibrahim7680@gmail.com" className="flex items-center gap-1 text-indigo-600 hover:underline">
-                      <Mail className="w-3.5 h-3.5" />
-                      asifibrahim7680@gmail.com
-                    </a>
-                    <span className="text-slate-300">•</span>
-                    <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-indigo-600 hover:underline">
-                      <Linkedin className="w-3.5 h-3.5" />
-                      linkedin.com/in/aasif-ibrahim-135b9b371
-                    </a>
-                  </div>
-                </div>
-
-                {/* Profile Photo in Resume */}
-                <div 
-                  onClick={openUploadModal}
-                  title="Click to change or upload photo"
-                  className="w-20 h-24 sm:w-24 sm:h-28 rounded-lg overflow-hidden border-2 border-slate-300 shadow-sm flex-shrink-0 bg-slate-100 print:w-20 print:h-24 cursor-pointer relative group"
-                >
-                  <img
-                    src={photoUrl}
-                    alt={PERSONAL_INFO.name}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-center"
-                  />
+              <div className="text-center sm:text-left">
+                <h1 className="font-['Outfit'] font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-wide uppercase">
+                  Aasif Ibrahim
+                </h1>
+                <p className="font-['Outfit'] text-sm sm:text-base font-semibold text-slate-700 mt-1">
+                  B.E. Computer Science & Engineering <span className="text-slate-400">|</span> AI & Technology Enthusiast <span className="text-slate-400">|</span> Community Builder
+                </p>
+                
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 mt-2 text-xs text-slate-600 font-['JetBrains_Mono']">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-indigo-600" />
+                    Avadi, Chennai, Tamil Nadu, India
+                  </span>
+                  <span className="text-slate-300">•</span>
+                  <span className="flex items-center gap-1">
+                    <Phone className="w-3.5 h-3.5 text-indigo-600" />
+                    +91 80725 96741
+                  </span>
+                  <span className="text-slate-300">•</span>
+                  <a href="mailto:asifibrahim7680@gmail.com" className="flex items-center gap-1 text-indigo-600 hover:underline">
+                    <Mail className="w-3.5 h-3.5" />
+                    asifibrahim7680@gmail.com
+                  </a>
+                  <span className="text-slate-300">•</span>
+                  <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-indigo-600 hover:underline">
+                    <Linkedin className="w-3.5 h-3.5" />
+                    linkedin.com/in/aasif-ibrahim-135b9b371
+                  </a>
                 </div>
               </div>
             </div>
