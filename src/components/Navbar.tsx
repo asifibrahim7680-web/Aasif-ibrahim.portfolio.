@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Menu, X, ArrowRight, Sun, Moon, Sparkles, FileText, Code2 } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface NavbarProps {
@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenResume
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,201 +29,140 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { name: 'Home', id: 'hero' },
     { name: 'About', id: 'about' },
     { name: 'Skills', id: 'skills' },
-    { name: 'Lab', id: 'interactive-lab' },
     { name: 'Projects', id: 'projects' },
+    { name: 'Lab', id: 'interactive-lab' },
+    { name: 'Highlights', id: 'achievements' },
     { name: 'Education', id: 'education' },
-    { name: 'Certifications', id: 'certifications' },
+    { name: 'Resume', id: 'resume' },
     { name: 'Contact', id: 'contact' }
   ];
 
   const handleLinkClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    setMobileDrawerOpen(false);
+    setMobileMenuOpen(false);
     onNavigate(id);
   };
 
   return (
     <>
       <header
-        id="top-app-bar"
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 dark:bg-[#0b1326]/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-[#424754]/40 shadow-sm'
-            : 'bg-white/80 dark:bg-[#0b1326]/70 backdrop-blur-md border-b border-slate-100 dark:border-[#424754]/20'
-        } flex justify-between items-center h-18 px-4 sm:px-6 md:px-12`}
+            ? 'bg-[var(--surface-glass)] backdrop-blur-md border-b border-[var(--line)] shadow-[var(--shadow-sm)] py-3.5'
+            : 'bg-transparent py-5'
+        }`}
       >
-        {/* Left Brand */}
-        <div className="flex items-center gap-3">
-          <button
-            id="menu-toggle-btn"
-            onClick={() => setMobileDrawerOpen(true)}
-            className="lg:hidden p-2 rounded-lg text-slate-700 dark:text-[#c2c6d6] hover:text-indigo-600 dark:hover:text-[#adc6ff] hover:bg-slate-100 dark:hover:bg-[#171f33] transition-colors focus:outline-none cursor-pointer"
-            aria-label="Open mobile menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
+          
+          {/* Brand */}
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, 'hero')}
-            className="flex items-center gap-2.5 text-slate-900 dark:text-[#dae2fd] font-extrabold text-2xl tracking-tight group"
+            className="flex items-center gap-2 group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 dark:bg-indigo-600 text-white flex items-center justify-center font-['Outfit'] font-bold text-sm shadow-sm">
-              <span>AI</span>
-            </div>
-            <div className="flex items-center">
-              <span className="font-['Outfit']">{PERSONAL_INFO.name.split(' ')[0]}</span>
-              <span className="text-indigo-600 dark:text-[#adc6ff] text-3xl leading-none">.</span>
-            </div>
+            <span className="w-8 h-8 rounded-lg bg-[var(--ink)] text-[var(--surface)] flex items-center justify-center font-bold text-sm tracking-tight transition-transform group-hover:scale-105">
+              AI
+            </span>
+            <span className="font-['Manrope'] font-extrabold text-lg text-[var(--ink)] tracking-tight">
+              Aasif Ibrahim<span className="text-[var(--ink-faint)]">.</span>
+            </span>
           </a>
-        </div>
 
-        {/* Desktop Nav Items */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-7 text-[0.92rem] font-medium text-[var(--ink-soft)]">
+            {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleLinkClick(e, link.id)}
-                className={`relative px-3.5 py-1.5 rounded-lg text-sm font-['Outfit'] transition-all duration-200 ${
-                  isActive
-                    ? 'text-indigo-600 dark:text-[#adc6ff] font-bold bg-indigo-50/70 dark:bg-[#171f33]'
-                    : 'text-slate-600 dark:text-[#c2c6d6] hover:text-indigo-600 dark:hover:text-[#adc6ff] hover:bg-slate-50 dark:hover:bg-[#171f33]/60 font-medium'
+                className={`transition-colors hover:text-[var(--ink)] relative py-1 ${
+                  activeSection === link.id ? 'text-[var(--ink)] font-semibold' : ''
                 }`}
               >
                 {link.name}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-indigo-600 dark:bg-[#adc6ff] rounded-full" />
+                {activeSection === link.id && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--ink)] rounded-full" />
                 )}
               </a>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
 
-        {/* Right actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Resume CTA Button */}
-          <button
-            id="nav-resume-btn"
-            onClick={onOpenResume}
-            className="inline-flex items-center gap-1.5 font-['Outfit'] text-xs font-semibold px-3.5 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 border border-indigo-200 dark:border-indigo-800/60 transition-all duration-200 shadow-sm active:scale-95 cursor-pointer"
-            title="View & Download Official Resume"
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Resume</span>
-          </button>
+          {/* Right Action Controls */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-10 h-10 rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] flex items-center justify-center transition-all hover:border-[var(--ink)] hover:scale-105 cursor-pointer shadow-xs"
+              aria-label="Toggle Color Theme"
+              title={darkMode ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              {darkMode ? (
+                <Sun className="w-4 h-4 transition-transform duration-300 rotate-0" />
+              ) : (
+                <Moon className="w-4 h-4 transition-transform duration-300 rotate-0" />
+              )}
+            </button>
 
-          {/* Theme Toggle */}
-          <button
-            id="theme-toggle-btn"
-            onClick={() => setDarkMode((prev) => !prev)}
-            className="p-2.5 rounded-full text-slate-700 dark:text-[#c2c6d6] hover:text-indigo-600 dark:hover:text-[#adc6ff] hover:bg-slate-100 dark:hover:bg-[#171f33] border border-slate-200 dark:border-[#424754]/30 transition-colors cursor-pointer"
-            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            aria-label="Toggle theme"
-          >
-            {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
-          </button>
+            {/* Direct Connect CTA Button */}
+            <a
+              href="#contact"
+              onClick={(e) => handleLinkClick(e, 'contact')}
+              className="btn primary sm hidden sm:inline-flex"
+            >
+              Let's Talk
+            </a>
 
-          {/* Quick Contact CTA */}
-          <a
-            id="nav-contact-cta"
-            href="#contact"
-            onClick={(e) => handleLinkClick(e, 'contact')}
-            className="hidden sm:inline-flex items-center gap-2 font-['Outfit'] text-xs font-semibold px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all duration-200 shadow-sm active:scale-95 cursor-pointer"
-          >
-            <span>Contact</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="w-10 h-10 rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] flex lg:hidden items-center justify-center transition-all cursor-pointer"
+              aria-label="Toggle Mobile Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay */}
-      <div
-        id="mobile-drawer-overlay"
-        onClick={() => setMobileDrawerOpen(false)}
-        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] lg:hidden transition-opacity duration-300 ${
-          mobileDrawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      />
-
-      {/* Mobile Drawer */}
-      <aside
-        id="mobile-drawer"
-        className={`fixed inset-y-0 left-0 z-[70] flex flex-col h-full w-72 bg-[#131b2e] border-r border-[#424754]/30 shadow-2xl py-6 px-4 lg:hidden transition-transform duration-300 ease-out ${
-          mobileDrawerOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between pb-6 border-b border-[#424754]/30 mb-6 px-2">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-['Outfit'] font-bold text-sm shadow-sm flex-shrink-0">
-              AI
-            </div>
-            <div>
-              <h2 className="font-['Outfit'] font-bold text-base text-[#adc6ff]">{PERSONAL_INFO.name}</h2>
-              <p className="text-xs text-[#c2c6d6]">CSE Student • CGPA 8.3</p>
-            </div>
-          </div>
-          <button
-            id="close-drawer-btn"
-            onClick={() => setMobileDrawerOpen(false)}
-            className="p-1.5 rounded-lg text-[#c2c6d6] hover:text-white hover:bg-[#171f33] cursor-pointer"
-            aria-label="Close navigation drawer"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Resume button in mobile drawer */}
-        <div className="mb-4 px-2">
-          <button
-            onClick={() => {
-              setMobileDrawerOpen(false);
-              onOpenResume();
-            }}
-            className="w-full py-2.5 px-4 rounded-lg bg-indigo-600 text-white font-['Outfit'] text-xs font-semibold flex items-center justify-center gap-2 shadow-sm cursor-pointer"
-          >
-            <FileText className="w-4 h-4" />
-            <span>View Official Resume</span>
-          </button>
-        </div>
-
-        {/* Links */}
-        <nav className="flex-1 overflow-y-auto space-y-1">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
+      {/* Mobile Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div className="fixed top-[65px] left-0 right-0 z-40 bg-[var(--surface)] border-b border-[var(--line)] shadow-xl px-6 py-6 lg:hidden animate-fadeIn">
+          <nav className="flex flex-col space-y-3 font-medium text-base text-[var(--ink-soft)]">
+            {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleLinkClick(e, link.id)}
-                className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-['JetBrains_Mono'] transition-colors ${
-                  isActive
-                    ? 'bg-[#6f00be]/30 text-[#adc6ff] border border-[#6f00be]/50 font-semibold'
-                    : 'text-[#c2c6d6] hover:bg-[#171f33] hover:text-white'
+                className={`py-2 px-3 rounded-lg border-b border-[var(--line-subtle)] transition-colors ${
+                  activeSection === link.id ? 'text-[var(--ink)] font-bold bg-[var(--tint-1)]' : 'hover:text-[var(--ink)]'
                 }`}
               >
-                <span>{link.name}</span>
-                {isActive && <Sparkles className="w-4 h-4 text-[#adc6ff]" />}
+                {link.name}
               </a>
-            );
-          })}
-        </nav>
-
-        {/* Drawer Footer info */}
-        <div className="pt-4 border-t border-[#424754]/30 text-xs text-[#8c909f] px-2 font-['JetBrains_Mono']">
-          <p className="flex items-center gap-1.5 text-[#adc6ff]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            Open for internships & projects
-          </p>
-          <p className="mt-2 text-[11px] text-[#c2c6d6]">Avadi, Chennai, Tamil Nadu, India</p>
+            ))}
+          </nav>
+          <div className="mt-5 pt-4 border-t border-[var(--line)] flex flex-col gap-3">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
+              className="btn secondary w-full text-center"
+            >
+              View Verified Resume
+            </button>
+            <a
+              href="#contact"
+              onClick={(e) => handleLinkClick(e, 'contact')}
+              className="btn primary w-full text-center"
+            >
+              Let's Talk
+            </a>
+          </div>
         </div>
-      </aside>
+      )}
     </>
   );
 };
-

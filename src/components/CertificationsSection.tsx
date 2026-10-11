@@ -1,106 +1,103 @@
-import React, { useState } from 'react';
-import { Award, Cloud, BrainCircuit, ExternalLink, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { Award, Brain, Cloud, Users, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../data/portfolioData';
-import { Certification } from '../types';
-import { CertificateModal } from './CertificateModal';
 
 export const CertificationsSection: React.FC = () => {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
-
-  const getCertIcon = (category: string) => {
-    switch (category) {
-      case 'cloud':
-        return <Cloud className="w-6 h-6 text-[#ddb7ff]" />;
-      case 'ml':
-      case 'ai':
-      default:
-        return <BrainCircuit className="w-6 h-6 text-[#adc6ff]" />;
+  const highlights = [
+    {
+      icon: <Cloud className="w-5 h-5 text-[var(--ink)]" />,
+      sub: "Cloud & AI Credential",
+      title: "Artificial Intelligence & Microsoft Azure Course",
+      description: "Completed specialized training in AI workloads, Azure cognitive services, and enterprise cloud architecture.",
+      date: "Verified Coursework",
+      id: "AZ-AI-AZURE-VERIFIED"
+    },
+    {
+      icon: <Brain className="w-5 h-5 text-[var(--ink)]" />,
+      sub: "Machine Learning Credential",
+      title: "Machine Learning Specialization",
+      description: "Covered supervised and unsupervised algorithms, model evaluation, regression, classification, and heuristic pipelines.",
+      date: "Accredited",
+      id: "ML-COURSE-ACCREDITED"
+    },
+    {
+      icon: <Users className="w-5 h-5 text-[var(--ink)]" />,
+      sub: "Community Leadership",
+      title: "Tech Community Builder & Mentor",
+      description: "Dedicated to organizing learning sessions, sharing practical AI knowledge, and guiding students to build hands-on applications.",
+      date: "Active Involvement",
+      id: "COMMUNITY-LEADER"
+    },
+    {
+      icon: <Award className="w-5 h-5 text-[var(--ink)]" />,
+      sub: "Academic Standing",
+      title: "Anna University CSE • CGPA 8.3",
+      description: "Maintained a strong 8.3 CGPA at Aalim Muhammed Salegh College of Engineering with strong foundations in computing algorithms.",
+      date: "Graduating 2029",
+      id: "AMSCE-ACADEMIC"
     }
-  };
+  ];
 
   return (
-    <section id="certifications" className="py-16 sm:py-20 scroll-mt-20 border-t border-slate-200 dark:border-[#424754]/20 relative bg-white dark:bg-transparent">
-      <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-12">
+    <section id="achievements" className="py-24 relative bg-[var(--bg-alt)] border-t border-[var(--line)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10">
         
-        {/* Section Header */}
-        <div className="mb-10">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-[#adc6ff]/10 border border-indigo-200 dark:border-[#adc6ff]/30 flex items-center justify-center text-indigo-600 dark:text-[#adc6ff]">
-              <Award className="w-4 h-4" />
-            </div>
-            <h2 className="font-['Outfit'] font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-[#dae2fd]">
-              Certifications
-            </h2>
-          </div>
-          <p className="text-slate-600 dark:text-[#c2c6d6] text-base sm:text-lg max-w-2xl">
-            Specialized accreditations in cloud computing, artificial intelligence, and machine learning.
+        {/* Section Head matching fahimio */}
+        <div className="max-w-2xl space-y-3 mb-16">
+          <span className="eyebrow">
+            Achievements &amp; Highlights
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-['Manrope'] font-extrabold text-[var(--ink)] tracking-tight">
+            Moments worth mentioning
+          </h2>
+          <p className="text-base text-[var(--ink-soft)] leading-relaxed">
+            Certifications, academic achievements, and community milestones across computing, AI, and cloud technology.
           </p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {CERTIFICATIONS_DATA.map((cert) => (
+        {/* Highlights Grid matching fahimio achieve-grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {highlights.map((item, idx) => (
             <div
-              key={cert.id}
-              onClick={() => setSelectedCert(cert)}
-              className="bg-white dark:bg-[#0f172a] rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-[#424754]/30 hover:border-indigo-500 dark:hover:border-[#adc6ff]/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group cursor-pointer flex flex-col justify-between"
+              key={idx}
+              className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--line)] shadow-[var(--shadow-sm)] flex flex-col justify-between space-y-4 transition-transform duration-300 hover:-translate-y-1"
             >
-              <div>
-                {/* Top icon and inspect link */}
-                <div className="flex items-start justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-[#0b1326] border border-indigo-100 dark:border-[#424754]/40 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform text-indigo-600 dark:text-[#adc6ff]">
-                    {getCertIcon(cert.category)}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--tint-1)] border border-[var(--line)] flex items-center justify-center">
+                    {item.icon}
                   </div>
-                  
-                  <div className="flex items-center gap-1 text-indigo-600 dark:text-[#adc6ff] opacity-80 group-hover:opacity-100 transition-opacity">
-                    <span className="text-xs font-['JetBrains_Mono'] hidden sm:inline">Inspect</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
+                  <span className="text-xs font-mono text-[var(--ink-faint)]">
+                    {item.date}
+                  </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-['Outfit'] font-bold text-xl sm:text-2xl text-slate-900 dark:text-[#dae2fd] group-hover:text-indigo-600 dark:group-hover:text-[#adc6ff] transition-colors mb-2">
-                  {cert.title}
-                </h3>
-                
-                <p className="text-xs font-['JetBrains_Mono'] text-slate-500 dark:text-[#8c909f] mb-4">
-                  {cert.issuer}
-                </p>
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ink-faint)] block mb-1">
+                    {item.sub}
+                  </span>
+                  <h3 className="text-lg font-bold font-['Manrope'] text-[var(--ink)]">
+                    {item.title}
+                  </h3>
+                </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-[#c2c6d6] line-clamp-2 mb-4 leading-relaxed">
-                  {cert.description}
+                <p className="text-xs sm:text-sm text-[var(--ink-soft)] leading-relaxed">
+                  {item.description}
                 </p>
               </div>
 
-              {/* Tags and status */}
-              <div className="pt-4 border-t border-slate-100 dark:border-[#424754]/30 flex items-center justify-between">
-                <div className="flex gap-2">
-                  {cert.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1 rounded bg-slate-100 dark:bg-[#131b2e] border border-slate-200 dark:border-[#424754]/40 text-xs font-['JetBrains_Mono'] text-slate-700 dark:text-[#c2c6d6]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <span className="text-[11px] font-['JetBrains_Mono'] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
+              <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between text-xs font-mono text-[var(--ink-faint)]">
+                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-sans font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  Verified
+                  Verified Milestone
                 </span>
+                <span>ID: {item.id}</span>
               </div>
             </div>
           ))}
         </div>
 
       </div>
-
-      {/* Verification Modal */}
-      <CertificateModal
-        certification={selectedCert}
-        onClose={() => setSelectedCert(null)}
-      />
     </section>
   );
 };

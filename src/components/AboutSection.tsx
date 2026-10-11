@@ -1,245 +1,78 @@
-import React, { useState } from 'react';
-import { 
-  GraduationCap, 
-  Rocket, 
-  BrainCircuit, 
-  Users, 
-  User, 
-  CheckCircle2, 
-  FileText, 
-  Award, 
-  Terminal, 
-  Code2, 
-  Sparkles, 
-  Layers, 
-  MapPin, 
-  Calendar, 
-  ArrowUpRight,
-  BookOpen,
-  HeartHandshake,
-  Cpu,
-  Check
-} from 'lucide-react';
-import { PERSONAL_INFO, CORE_STRENGTHS, COMMUNITY_INVOLVEMENT } from '../data/portfolioData';
+import React from 'react';
+import { ArrowRight, FileText } from 'lucide-react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface AboutSectionProps {
   onOpenResume?: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
-  const [activeStrength, setActiveStrength] = useState<string | null>(null);
-
   return (
-    <section id="about" className="py-20 scroll-mt-20 border-t border-slate-200 dark:border-[#334155]/40 relative bg-white dark:bg-[#070b16] transition-colors duration-300">
-      <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-12">
+    <section id="about" className="py-24 relative border-t border-[var(--line)]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-10 space-y-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-['JetBrains_Mono'] mb-3">
-              <User className="w-3.5 h-3.5" />
-              <span>Architectural Biography & Mission</span>
-            </div>
-            <h2 className="font-['Outfit'] font-extrabold text-3xl sm:text-4xl text-slate-900 dark:text-[#dae2fd] tracking-tight">
-              About & Engineering Philosophy
-            </h2>
+        {/* Eyebrow */}
+        <div>
+          <span className="eyebrow">
+            About Me
+          </span>
+        </div>
+
+        {/* Headline */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Manrope'] font-extrabold text-[var(--ink)] tracking-tight leading-tight">
+          A student who prefers building to just reading about it
+        </h2>
+
+        {/* Editorial Narrative */}
+        <div className="space-y-5 text-base sm:text-lg text-[var(--ink-soft)] leading-relaxed">
+          <p>
+            I am a Computer Science &amp; Engineering student at <span className="text-[var(--ink)] font-semibold">{PERSONAL_INFO.college}</span> (<span className="text-[var(--ink)] font-semibold">{PERSONAL_INFO.university}</span>) with an academic CGPA of <span className="text-[var(--ink)] font-semibold">{PERSONAL_INFO.cgpa}</span>. I enjoy turning abstract concepts into working, responsive software—from intelligent web applications to structured educational tools.
+          </p>
+          <p>
+            My technical focus centers around Artificial Intelligence, Machine Learning, Microsoft Azure cloud computing, and modern full-stack web engineering with TypeScript. I believe in hands-on development as the ultimate teacher: designing systems, debugging edge cases, and shipping usable digital products.
+          </p>
+          <p>
+            Beyond writing code, I am dedicated to community building—sharing practical knowledge about AI and cloud tooling, organizing workshops, and encouraging fellow students to become confident technology builders.
+          </p>
+        </div>
+
+        {/* 4 Info Cards Grid matching fahimio */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+          <div className="info-card">
+            <div className="label">Degree &amp; Program</div>
+            <div className="value">B.E. Computer Science &amp; Eng.</div>
           </div>
 
+          <div className="info-card">
+            <div className="label">Core Specialization</div>
+            <div className="value">AI &amp; Cloud Systems</div>
+          </div>
+
+          <div className="info-card">
+            <div className="label">Academic Standing</div>
+            <div className="value">CGPA 8.3 • Anna University</div>
+          </div>
+
+          <div className="info-card">
+            <div className="label">Location Base</div>
+            <div className="value">Chennai, Tamil Nadu, India</div>
+          </div>
+        </div>
+
+        {/* Action link */}
+        <div className="pt-2 flex flex-wrap items-center gap-4">
+          <a href="#contact" className="btn primary">
+            Let's Connect
+          </a>
           {onOpenResume && (
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#131b2e] dark:hover:bg-[#1e293b] text-slate-800 dark:text-white border border-slate-200 dark:border-[#334155]/60 text-xs font-['Outfit'] font-bold transition-all cursor-pointer shadow-sm"
+              className="btn secondary"
             >
-              <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <FileText className="w-4 h-4 text-[var(--ink-soft)]" />
               <span>View Full Verified Resume</span>
             </button>
           )}
-        </div>
-
-        {/* Bento Grid Layout (4 distinct architectural cells) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          
-          {/* Cell 1 (Span 7): Vision, Technical Core & Purpose */}
-          <div className="md:col-span-7 bento-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-[#334155]/50">
-                <span className="text-xs font-['JetBrains_Mono'] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                  <Terminal className="w-4 h-4" />
-                  Technical Focus & Vision
-                </span>
-                <span className="text-xs font-['JetBrains_Mono'] text-slate-400">Anna Univ • CSE</span>
-              </div>
-
-              <p className="text-slate-700 dark:text-[#dae2fd] font-medium text-base leading-relaxed">
-                {PERSONAL_INFO.aboutText1}
-              </p>
-
-              <p className="text-slate-600 dark:text-[#94a3b8] text-sm leading-relaxed">
-                {PERSONAL_INFO.aboutText2}
-              </p>
-
-              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#070b16] border border-slate-200 dark:border-[#334155]/60 text-xs font-['JetBrains_Mono'] text-slate-700 dark:text-[#c2c6d6] space-y-2">
-                <div className="font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                  Primary Career Objective:
-                </div>
-                <p className="leading-relaxed">
-                  {PERSONAL_INFO.careerObjective}
-                </p>
-              </div>
-            </div>
-
-            {/* Core Values Bullets */}
-            <div className="grid grid-cols-2 gap-3 pt-2 border-t border-slate-200 dark:border-[#334155]/50 text-xs font-['JetBrains_Mono'] text-slate-700 dark:text-[#dae2fd]">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <span>Strict TypeScript Code</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <span>Azure & AI Deployment</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <span>EdTech & Student Tools</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <span>Open Community Builder</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Cell 2 (Span 5): Academic Excellence & Progression Gauge */}
-          <div className="md:col-span-5 bento-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-            <div>
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-[#334155]/50 mb-5">
-                <span className="text-xs font-['JetBrains_Mono'] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-2">
-                  <GraduationCap className="w-4 h-4" />
-                  Academic Mastery
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 text-xs font-['JetBrains_Mono'] font-bold border border-emerald-300 dark:border-emerald-800">
-                  8.3 CGPA
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-['Outfit'] font-extrabold text-2xl text-slate-900 dark:text-white">
-                    B.E. Computer Science
-                  </h3>
-                  <p className="text-xs font-['JetBrains_Mono'] text-indigo-600 dark:text-indigo-400 mt-1">
-                    Aalim Muhammed Salegh College of Engineering
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-[#8c909f]">Affiliated with Anna University</p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#070b16] border border-slate-200 dark:border-[#334155]/60 space-y-2">
-                  <div className="flex justify-between text-xs font-['JetBrains_Mono']">
-                    <span className="text-slate-500 dark:text-[#8c909f]">Undergraduate Timeline</span>
-                    <span className="text-indigo-600 dark:text-indigo-400 font-bold">2025 - 2029</span>
-                  </div>
-                  <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full w-[35%]" />
-                  </div>
-                  <div className="flex justify-between text-[10px] font-['JetBrains_Mono'] text-slate-400">
-                    <span>Year 1 Foundation</span>
-                    <span>Expected: 2029</span>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5 text-xs text-slate-600 dark:text-[#94a3b8]">
-                  <div className="flex items-center gap-2 font-['JetBrains_Mono']">
-                    <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                    <span>Avadi, Chennai, Tamil Nadu, India</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-slate-200 dark:border-[#334155]/50 flex items-center justify-between text-xs font-['JetBrains_Mono']">
-              <span className="text-slate-500">Degree Status:</span>
-              <span className="text-slate-900 dark:text-white font-bold">In Active Study</span>
-            </div>
-          </div>
-
-          {/* Cell 3 (Span 6): Community & Knowledge Sharing Beacon */}
-          <div className="md:col-span-6 bento-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-[#334155]/50">
-                <span className="text-xs font-['JetBrains_Mono'] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center gap-2">
-                  <Users className="w-4 h-4" />
-                  Community Leadership & Workshops
-                </span>
-                <span className="text-xs font-['JetBrains_Mono'] text-purple-500 font-bold">Active</span>
-              </div>
-
-              <h3 className="font-['Outfit'] font-bold text-xl text-slate-900 dark:text-white">
-                Sharing Emerging Technology with Student Builders
-              </h3>
-
-              <div className="space-y-2.5">
-                {COMMUNITY_INVOLVEMENT.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-[#c2c6d6]">
-                    <div className="w-5 h-5 rounded-full bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/60 flex items-center justify-center flex-shrink-0 mt-0.5 text-purple-600 dark:text-purple-400">
-                      <HeartHandshake className="w-3 h-3" />
-                    </div>
-                    <span className="leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-xl bg-purple-50/50 dark:bg-[#120d26] border border-purple-200 dark:border-purple-900/40 text-xs font-['JetBrains_Mono'] text-purple-800 dark:text-purple-300">
-              ⚡ <em>Organizing student learning activities and AI technology demonstrations in Chennai.</em>
-            </div>
-          </div>
-
-          {/* Cell 4 (Span 6): Core Strengths & Interactive Competency Chips */}
-          <div className="md:col-span-6 bento-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-[#334155]/50">
-                <span className="text-xs font-['JetBrains_Mono'] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                  <Cpu className="w-4 h-4" />
-                  Core Strengths Matrix
-                </span>
-                <span className="text-xs font-['JetBrains_Mono'] text-slate-400">Click to Inspect</span>
-              </div>
-
-              <h3 className="font-['Outfit'] font-bold text-xl text-slate-900 dark:text-white">
-                Engineering Discipline & Soft Skills
-              </h3>
-
-              <div className="flex flex-wrap gap-2.5">
-                {CORE_STRENGTHS.map((strength) => (
-                  <button
-                    key={strength}
-                    onClick={() => setActiveStrength(activeStrength === strength ? null : strength)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-['JetBrains_Mono'] font-semibold transition-all cursor-pointer flex items-center gap-2 ${
-                      activeStrength === strength
-                        ? 'bg-indigo-600 text-white shadow-md scale-105'
-                        : 'bg-slate-100 dark:bg-[#070b16] text-slate-700 dark:text-[#dae2fd] border border-slate-200 dark:border-[#334155]/60 hover:border-indigo-500'
-                    }`}
-                  >
-                    <span>{strength}</span>
-                    {activeStrength === strength && <Check className="w-3.5 h-3.5" />}
-                  </button>
-                ))}
-              </div>
-
-              {activeStrength && (
-                <div className="p-3.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-['JetBrains_Mono'] text-indigo-700 dark:text-indigo-300 animate-fadeIn">
-                  ✓ Verified engineering attribute applied throughout Aasif's academic and practical software projects.
-                </div>
-              )}
-            </div>
-
-            <div className="pt-3 border-t border-slate-200 dark:border-[#334155]/50 text-xs font-['JetBrains_Mono'] text-slate-500 dark:text-[#8c909f]">
-              <span>Languages Fluent: </span>
-              <strong className="text-slate-800 dark:text-white">English (Professional), Tamil (Native)</strong>
-            </div>
-          </div>
-
         </div>
 
       </div>

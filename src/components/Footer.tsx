@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Github, Linkedin, Twitter, ArrowUp } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Phone, Heart } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface FooterProps {
@@ -8,68 +8,114 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onScrollToTop }) => {
   return (
-    <footer className="bg-slate-100 dark:bg-[#060e20] border-t border-slate-200 dark:border-[#424754]/30 w-full py-12 text-slate-600 dark:text-[#c2c6d6] transition-colors">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="border-t border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] py-16 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 space-y-12">
         
-        {/* Brand & Copyright */}
-        <div className="flex flex-col items-center md:items-start gap-1">
-          <div className="flex items-center gap-2 font-['Outfit'] font-bold text-lg text-slate-900 dark:text-[#adc6ff]">
-            <span>Aasif<span className="text-indigo-600 dark:text-indigo-400">.</span></span>
+        {/* Top Tier matching fahimio */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Brand & Tagline */}
+          <div className="md:col-span-6 space-y-3">
+            <a href="#hero" className="inline-block text-xl font-extrabold font-['Manrope'] tracking-tight text-[var(--ink)]">
+              Aasif Ibrahim<span className="text-[var(--ink-faint)]">.</span>
+            </a>
+            <p className="text-xs sm:text-sm text-[var(--ink-soft)] leading-relaxed max-w-sm">
+              Computer Science &amp; Engineering student at Anna University building practical AI, cloud systems, and web software, one project at a time.
+            </p>
           </div>
-          <p className="text-xs text-slate-500 dark:text-[#8c909f] font-['JetBrains_Mono']">
-            © 2026 Aasif Ibrahim. All Rights Reserved.
-          </p>
-          <p className="text-[11px] text-slate-400 dark:text-[#424754] font-['JetBrains_Mono']">
-            Designed & Engineered with technical precision.
-          </p>
+
+          {/* Right Navigation & Connect Links */}
+          <div className="md:col-span-6 grid grid-cols-2 gap-8 text-xs sm:text-sm">
+            <div>
+              <h4 className="font-bold text-[var(--ink)] font-['Manrope'] mb-3 uppercase tracking-wider text-[11px]">
+                Navigate
+              </h4>
+              <ul className="space-y-2 text-[var(--ink-soft)]">
+                <li><a href="#about" className="hover:text-[var(--ink)] transition-colors">About</a></li>
+                <li><a href="#skills" className="hover:text-[var(--ink)] transition-colors">Skills</a></li>
+                <li><a href="#projects" className="hover:text-[var(--ink)] transition-colors">Projects</a></li>
+                <li><a href="#interactive-lab" className="hover:text-[var(--ink)] transition-colors">Interactive Lab</a></li>
+                <li><a href="#education" className="hover:text-[var(--ink)] transition-colors">Education</a></li>
+                <li><a href="#resume" className="hover:text-[var(--ink)] transition-colors">Resume</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-[var(--ink)] font-['Manrope'] mb-3 uppercase tracking-wider text-[11px]">
+                Connect
+              </h4>
+              <ul className="space-y-2 text-[var(--ink-soft)]">
+                <li>
+                  <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--ink)] transition-colors">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--ink)] transition-colors">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-[var(--ink)] transition-colors">
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${PERSONAL_INFO.phone}`} className="hover:text-[var(--ink)] transition-colors">
+                    Phone
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
 
-        {/* Social Links */}
-        <div className="flex items-center gap-5 text-xs font-['JetBrains_Mono']">
-          <a
-            id="footer-github-link"
-            href={PERSONAL_INFO.github}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-[#adc6ff] transition-colors flex items-center gap-1.5 text-slate-700 dark:text-[#c2c6d6]"
-          >
-            <Github className="w-4 h-4" />
-            <span>GitHub</span>
-          </a>
+        {/* Bottom Tier matching fahimio */}
+        <div className="pt-8 border-t border-[var(--line)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--ink-faint)]">
+          <div>
+            Designed &amp; Built by Aasif Ibrahim · © 2026. All rights reserved.
+          </div>
 
-          <a
-            id="footer-linkedin-link"
-            href={PERSONAL_INFO.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-[#adc6ff] transition-colors flex items-center gap-1.5 text-slate-700 dark:text-[#c2c6d6]"
-          >
-            <Linkedin className="w-4 h-4" />
-            <span>LinkedIn</span>
-          </a>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--ink)] transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--ink)] transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="hover:text-[var(--ink)] transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
 
-          <a
-            id="footer-twitter-link"
-            href={PERSONAL_INFO.twitter}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-[#adc6ff] transition-colors flex items-center gap-1.5 text-slate-700 dark:text-[#c2c6d6]"
-          >
-            <Twitter className="w-4 h-4" />
-            <span>Twitter</span>
-          </a>
+            <button
+              onClick={onScrollToTop}
+              className="w-8 h-8 rounded-full border border-[var(--line)] flex items-center justify-center hover:border-[var(--ink)] hover:text-[var(--ink)] transition-colors cursor-pointer"
+              title="Scroll to top"
+              aria-label="Back to top"
+            >
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
-
-        {/* Scroll to Top */}
-        <button
-          id="btn-scroll-to-top"
-          onClick={onScrollToTop}
-          className="p-2.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-300 dark:border-[#424754]/40 hover:border-indigo-600 dark:hover:border-[#adc6ff] text-indigo-600 dark:text-[#adc6ff] hover:bg-slate-50 dark:hover:bg-[#171f33] transition-all duration-200 cursor-pointer shadow-sm"
-          title="Scroll back to top"
-          aria-label="Scroll back to top"
-        >
-          <ArrowUp className="w-4 h-4" />
-        </button>
 
       </div>
     </footer>

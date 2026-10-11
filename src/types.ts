@@ -2,12 +2,12 @@ export interface Project {
   id: string;
   title: string;
   category: string;
-  tagType: 'ai' | 'web';
+  tagType: 'ai' | 'web' | 'health' | 'hackathon' | '3d';
   badgeLabel: string;
   shortDescription: string;
   fullDescription: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   features: string[];
   techStack: string[];
   githubUrl: string;
@@ -61,4 +61,3 @@ export interface Language {
   level: string;
   proficiency: number;
 }
-

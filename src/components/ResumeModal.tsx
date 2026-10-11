@@ -12,11 +12,8 @@ import {
   MapPin, 
   Linkedin, 
   GraduationCap, 
-  Code, 
   Award, 
-  Users, 
-  Sparkles,
-  Globe
+  CheckCircle2 
 } from 'lucide-react';
 import { 
   PERSONAL_INFO, 
@@ -24,8 +21,7 @@ import {
   PROJECTS, 
   CERTIFICATIONS_DATA, 
   COMMUNITY_INVOLVEMENT, 
-  CORE_STRENGTHS, 
-  LANGUAGES_DATA 
+  CORE_STRENGTHS 
 } from '../data/portfolioData';
 
 interface ResumeModalProps {
@@ -43,337 +39,188 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   };
 
   const plainTextResume = `AASIF IBRAHIM
-B.E. Computer Science & Engineering | AI & Technology Enthusiast | Community Builder
-Avadi, Chennai, Tamil Nadu, India • +91 80725 96741 • asifibrahim7680@gmail.com • linkedin.com/in/aasif-ibrahim-135b9b371
-
-PROFILE
-Computer Science and Engineering student with a CGPA of 8.3 and a strong interest in Artificial Intelligence, Machine Learning, Microsoft Azure, cloud computing, software development, and educational technology. Passionate about building practical technology projects, learning through hands-on development, and helping students and developers discover emerging technologies.
+B.E. Computer Science & Engineering | AI & Technology Enthusiast
+Avadi, Chennai, Tamil Nadu, India • +91 80725 96741 • asifibrahim7680@gmail.com
+LinkedIn: linkedin.com/in/aasif-ibrahim-135b9b371 • GitHub: github.com/asifibrahim7680-web
 
 EDUCATION
 B.E. Computer Science & Engineering
-Aalim Muhammed Salegh College of Engineering • Anna University — CGPA: 8.3 | Expected Graduation: 2029
+Aalim Muhammed Salegh College of Engineering (Anna University)
+CGPA: 8.3 | Expected Graduation: 2029
+
+TECHNICAL FOCUS
+• Artificial Intelligence & Machine Learning
+• Microsoft Azure Cloud Computing
+• Modern Full-Stack Web Development (TypeScript, React, Tailwind CSS)
+• Database Management & Systems
 
 PROJECTS
-Bean & Byte AI Coffee Shop | TypeScript
-• Developed an AI-focused coffee shop web project with a modern interactive experience.
-• Applied TypeScript-based development and explored practical AI and web technology use cases.
+• MedVault: Secure healthcare and medical record management vault built with TypeScript.
+• Bean & Byte AI Coffee Shop: AI-focused interactive coffee platform built in TypeScript.
+• Learn Track (Foundation AI): Structured learning and curriculum diagnostic tool for students.
+• Daily Attendance System: Digital student attendance tracking with cryptographic verification.
+• Luxury Electronics: Responsive high-end electronics digital showroom and catalog.
 
-Learn Track | TypeScript
-• Developed a learning-focused platform designed to support students and structured learning.
-• Focused on an accessible user experience and educational technology.
-
-Daily Attendance | TypeScript
-• Developed a digital attendance management application for student information and attendance records.
-• Created a practical education-management solution.
-
-TECHNICAL SKILLS
-• AI: Artificial Intelligence, Generative AI, Machine Learning
-• Cloud: Microsoft Azure, Cloud Computing
-• Development: TypeScript, Web Development, Frontend Development, Backend & Database Integration, API Integration
-• Interests: Educational Technology, Developer Tools, Technical Project Development
-
-CERTIFICATIONS & COURSES
+CERTIFICATIONS
 • Artificial Intelligence & Microsoft Azure Course
-• Machine Learning Course
+• Machine Learning Specialization Course
+`;
 
-COMMUNITY INVOLVEMENT
-• Interested in building technology communities for students and developers.
-• Passionate about sharing knowledge about AI, cloud computing, and software development.
-• Interested in organizing technical demonstrations, workshops, and learning activities.
-• Motivated to help beginners explore emerging technologies through practical projects.
-
-CORE STRENGTHS
-Problem Solving • Technical Curiosity • Fast Learning • Communication • Collaboration • Community Building • Project Development
-
-LANGUAGES
-• English — Professional
-• Tamil — Native
-
-CAREER OBJECTIVE
-To grow as a technology professional while contributing to student and developer communities. I aim to use AI, Machine Learning, and cloud technologies to build practical solutions, share technical knowledge, organize learning activities, and encourage more students to become confident technology builders.`;
-
-  const handleCopy = () => {
+  const copyPlainText = () => {
     navigator.clipboard.writeText(plainTextResume);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md overflow-y-auto print:p-0 print:bg-white print:static"
-      onClick={onClose}
-    >
-      <div 
-        className="relative w-full max-w-4xl bg-white dark:bg-[#0d1527] border border-slate-200 dark:border-[#424754]/50 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col print:max-h-none print:border-none print:shadow-none print:rounded-none print:bg-white"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Toolbar (hidden on print) */}
-        <div className="flex items-center justify-between px-5 py-3.5 bg-slate-100 dark:bg-[#131b2e] border-b border-slate-200 dark:border-[#424754]/40 print:hidden flex-shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-              <FileText className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="font-['Outfit'] font-bold text-sm sm:text-base text-slate-900 dark:text-white">
-                Official Resume
-              </h3>
-              <p className="text-[11px] font-['JetBrains_Mono'] text-slate-500 dark:text-slate-400">
-                Aasif Ibrahim • Verified B.E. CSE Resume
-              </p>
-            </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-fadeIn">
+      {/* Backdrop */}
+      <div className="fixed inset-0" onClick={onClose} />
+
+      {/* Modal Container */}
+      <div className="relative w-full max-w-4xl bg-[var(--surface)] border border-[var(--line)] rounded-2xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[90vh]">
+        
+        {/* Header Bar */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--line)] bg-[var(--bg-alt)]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+            <span className="font-['Manrope'] font-bold text-sm text-[var(--ink)]">
+              Verified Curriculum Vitae
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
-              onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-[#1e293b] hover:bg-slate-50 dark:hover:bg-[#283548] text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-['Outfit'] font-semibold transition-all cursor-pointer shadow-sm"
-              title="Copy plain-text resume to clipboard"
+              onClick={copyPlainText}
+              className="p-2 rounded-lg text-xs font-medium border border-[var(--line)] hover:bg-[var(--tint-1)] text-[var(--ink)] flex items-center gap-1.5 transition-colors cursor-pointer"
+              title="Copy plain text"
             >
-              {copied ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="hidden sm:inline">Copy Text</span>
-                </>
-              )}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy Text'}</span>
             </button>
 
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-['Outfit'] font-semibold transition-all cursor-pointer shadow-sm"
-              title="Print or Save as PDF"
+              className="p-2 rounded-lg text-xs font-medium border border-[var(--line)] hover:bg-[var(--tint-1)] text-[var(--ink)] flex items-center gap-1.5 transition-colors cursor-pointer"
+              title="Print document"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span className="hidden sm:inline">Print / PDF</span>
             </button>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-[#1e293b] transition-colors ml-1 cursor-pointer"
+              className="w-8 h-8 rounded-lg border border-[var(--line)] flex items-center justify-center text-[var(--ink-soft)] hover:text-[var(--ink)] hover:bg-[var(--tint-1)] transition-colors cursor-pointer ml-1"
               aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Scrollable Printable Document Container */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-8 md:p-10 bg-slate-50 dark:bg-[#070d19] print:bg-white print:p-0 print:overflow-visible">
+        {/* Modal Scrollable Body */}
+        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 bg-white text-slate-900 font-sans">
           
-          {/* A4 Paper styled document card */}
-          <div className="max-w-[760px] mx-auto bg-white text-slate-900 p-8 sm:p-12 rounded-xl shadow-lg border border-slate-200 print:shadow-none print:border-none print:p-4 print:max-w-full font-['Inter',sans-serif]">
-            
-            {/* Resume Header */}
-            <div className="pb-4 border-b-2 border-slate-900">
-              <div className="text-center sm:text-left">
-                <h1 className="font-['Outfit'] font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-wide uppercase">
-                  Aasif Ibrahim
-                </h1>
-                <p className="font-['Outfit'] text-sm sm:text-base font-semibold text-slate-700 mt-1">
-                  B.E. Computer Science & Engineering <span className="text-slate-400">|</span> AI & Technology Enthusiast <span className="text-slate-400">|</span> Community Builder
-                </p>
-                
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 mt-2 text-xs text-slate-600 font-['JetBrains_Mono']">
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-indigo-600" />
-                    Avadi, Chennai, Tamil Nadu, India
-                  </span>
-                  <span className="text-slate-300">•</span>
-                  <span className="flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5 text-indigo-600" />
-                    +91 80725 96741
-                  </span>
-                  <span className="text-slate-300">•</span>
-                  <a href="mailto:asifibrahim7680@gmail.com" className="flex items-center gap-1 text-indigo-600 hover:underline">
-                    <Mail className="w-3.5 h-3.5" />
-                    asifibrahim7680@gmail.com
-                  </a>
-                  <span className="text-slate-300">•</span>
-                  <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-indigo-600 hover:underline">
-                    <Linkedin className="w-3.5 h-3.5" />
-                    linkedin.com/in/aasif-ibrahim-135b9b371
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Profile Section */}
-            <div className="mt-5">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Profile
-              </h2>
-              <p className="text-xs sm:text-[13px] leading-relaxed text-slate-800 text-justify">
-                {PERSONAL_INFO.profileText}
+          {/* Header */}
+          <div className="border-b border-slate-200 pb-6 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold font-['Manrope'] tracking-tight text-slate-950 uppercase">
+                {PERSONAL_INFO.name}
+              </h1>
+              <p className="text-sm font-medium text-slate-700 mt-1">
+                {PERSONAL_INFO.role}
               </p>
-            </div>
-
-            {/* Education Section */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Education
-              </h2>
-              <div className="space-y-1">
-                <div className="flex flex-wrap justify-between items-baseline">
-                  <h3 className="font-['Outfit'] font-bold text-sm text-slate-900">
-                    B.E. Computer Science & Engineering
-                  </h3>
-                  <span className="text-xs font-semibold font-['JetBrains_Mono'] text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
-                    CGPA: 8.3
-                  </span>
-                </div>
-                <p className="text-xs text-slate-700 font-medium">
-                  Aalim Muhammed Salegh College of Engineering • Anna University <span className="text-slate-400">—</span> Expected Graduation: 2029
-                </p>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1 text-xs text-slate-500 mt-2 font-mono">
+                <span>📍 {PERSONAL_INFO.location}</span>
+                <span>📞 {PERSONAL_INFO.phone}</span>
+                <span>✉️ {PERSONAL_INFO.email}</span>
               </div>
             </div>
 
-            {/* Projects Section */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Projects
-              </h2>
-              
-              <div className="space-y-3">
-                {/* Project 1 */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-['Outfit'] font-bold text-xs sm:text-sm text-slate-900 flex items-center gap-2">
-                      <span>Bean & Byte AI Coffee Shop</span>
-                      <span className="font-['JetBrains_Mono'] text-[11px] font-normal text-slate-500">| TypeScript</span>
-                    </h3>
-                    <a 
-                      href="https://bean-byte-aicoffee-shop.vercel.app" 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="text-[11px] font-['JetBrains_Mono'] text-indigo-600 hover:underline flex items-center gap-1 print:hidden"
-                    >
-                      <span>Live App</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+            <div className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-center sm:text-right shrink-0">
+              <div>STATUS: VERIFIED</div>
+              <div className="text-slate-500 text-[10px]">ANNA UNIVERSITY CSE</div>
+            </div>
+          </div>
+
+          {/* Profile Summary */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-2 border-b border-slate-200 pb-1">
+              Profile Summary
+            </h2>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              {PERSONAL_INFO.profileText}
+            </p>
+          </div>
+
+          {/* Education */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3 border-b border-slate-200 pb-1">
+              Education
+            </h2>
+            <div className="space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm font-semibold text-slate-950">
+                <span>B.E. Computer Science &amp; Engineering</span>
+                <span className="font-mono text-xs text-slate-500">2025 – 2029 (Expected)</span>
+              </div>
+              <div className="text-sm text-slate-700">
+                Aalim Muhammed Salegh College of Engineering • Anna University
+              </div>
+              <div className="text-xs font-mono text-emerald-700 font-semibold">
+                Academic Standing: CGPA 8.3
+              </div>
+            </div>
+          </div>
+
+          {/* Projects */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3 border-b border-slate-200 pb-1">
+              Featured Engineering Projects
+            </h2>
+            <div className="space-y-4 text-sm text-slate-700">
+              {PROJECTS.map((proj) => (
+                <div key={proj.id} className="space-y-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-slate-900">
+                    <span>{proj.title}</span>
+                    <span className="text-xs font-mono text-slate-500">{proj.techStack.join(' • ')}</span>
                   </div>
-                  <ul className="list-disc list-outside ml-4 mt-1 text-xs text-slate-700 space-y-0.5">
-                    <li>Developed an AI-focused coffee shop web project with a modern interactive experience.</li>
-                    <li>Applied TypeScript-based development and explored practical AI and web technology use cases.</li>
-                  </ul>
+                  <p className="text-xs leading-relaxed text-slate-600">
+                    {proj.fullDescription}
+                  </p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Project 2 */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-['Outfit'] font-bold text-xs sm:text-sm text-slate-900 flex items-center gap-2">
-                      <span>Learn Track</span>
-                      <span className="font-['JetBrains_Mono'] text-[11px] font-normal text-slate-500">| TypeScript</span>
-                    </h3>
-                    <a 
-                      href="https://foundation-eduction.vercel.app" 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="text-[11px] font-['JetBrains_Mono'] text-indigo-600 hover:underline flex items-center gap-1 print:hidden"
-                    >
-                      <span>Live App</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                  <ul className="list-disc list-outside ml-4 mt-1 text-xs text-slate-700 space-y-0.5">
-                    <li>Developed a learning-focused platform designed to support students and structured learning.</li>
-                    <li>Focused on an accessible user experience and educational technology.</li>
-                  </ul>
-                </div>
-
-                {/* Project 3 */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-['Outfit'] font-bold text-xs sm:text-sm text-slate-900 flex items-center gap-2">
-                      <span>Daily Attendance</span>
-                      <span className="font-['JetBrains_Mono'] text-[11px] font-normal text-slate-500">| TypeScript</span>
-                    </h3>
-                  </div>
-                  <ul className="list-disc list-outside ml-4 mt-1 text-xs text-slate-700 space-y-0.5">
-                    <li>Developed a digital attendance management application for student information and attendance records.</li>
-                    <li>Created a practical education-management solution.</li>
-                  </ul>
-                </div>
+          {/* Certifications & Skills */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3 border-b border-slate-200 pb-1">
+              Certifications &amp; Core Competencies
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <div className="font-bold text-slate-900">Microsoft Azure &amp; Artificial Intelligence</div>
+                <div className="text-slate-600">Cognitive services, cloud infrastructure and model integration</div>
+                <div className="text-[10px] font-mono text-slate-500">Credential: AZ-AI-AZURE-VERIFIED</div>
+              </div>
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <div className="font-bold text-slate-900">Machine Learning Specialization</div>
+                <div className="text-slate-600">Supervised and unsupervised models, evaluation, heuristic design</div>
+                <div className="text-[10px] font-mono text-slate-500">Credential: ML-COURSE-ACCREDITED</div>
               </div>
             </div>
+          </div>
 
-            {/* Technical Skills */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Technical Skills
-              </h2>
-              <div className="text-xs text-slate-800 space-y-1">
-                <div>
-                  <span className="font-bold text-slate-900">AI:</span> Artificial Intelligence, Generative AI, Machine Learning
-                </div>
-                <div>
-                  <span className="font-bold text-slate-900">Cloud:</span> Microsoft Azure, Cloud Computing
-                </div>
-                <div>
-                  <span className="font-bold text-slate-900">Development:</span> TypeScript, Web Development, Frontend Development, Backend & Database Integration, API Integration
-                </div>
-                <div>
-                  <span className="font-bold text-slate-900">Interests:</span> Educational Technology, Developer Tools, Technical Project Development
-                </div>
-              </div>
-            </div>
-
-            {/* Certifications & Courses */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Certifications & Courses
-              </h2>
-              <ul className="list-disc list-outside ml-4 text-xs text-slate-700 space-y-0.5">
-                <li><span className="font-semibold text-slate-900">Artificial Intelligence & Microsoft Azure Course</span></li>
-                <li><span className="font-semibold text-slate-900">Machine Learning Course</span></li>
-              </ul>
-            </div>
-
-            {/* Community Involvement */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Community Involvement
-              </h2>
-              <ul className="list-disc list-outside ml-4 text-xs text-slate-700 space-y-0.5">
-                {COMMUNITY_INVOLVEMENT.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Core Strengths */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Core Strengths
-              </h2>
-              <p className="text-xs text-slate-800 font-medium">
-                {CORE_STRENGTHS.join(' • ')}
-              </p>
-            </div>
-
-            {/* Languages */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Languages
-              </h2>
-              <p className="text-xs text-slate-800">
-                <span className="font-semibold">English</span> — Professional <span className="text-slate-400 mx-2">•</span> <span className="font-semibold">Tamil</span> — Native
-              </p>
-            </div>
-
-            {/* Career Objective */}
-            <div className="mt-4">
-              <h2 className="font-['Outfit'] font-bold text-xs uppercase tracking-widest text-slate-900 border-b border-slate-900 pb-1 mb-2">
-                Career Objective
-              </h2>
-              <p className="text-xs sm:text-[13px] leading-relaxed text-slate-800 text-justify">
-                {PERSONAL_INFO.careerObjective}
-              </p>
-            </div>
-
+          {/* Community Involvement */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-2 border-b border-slate-200 pb-1">
+              Community Involvement
+            </h2>
+            <ul className="list-disc list-inside text-xs text-slate-700 space-y-1">
+              {COMMUNITY_INVOLVEMENT.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
           </div>
 
         </div>
